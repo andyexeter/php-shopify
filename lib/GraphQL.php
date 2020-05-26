@@ -12,7 +12,7 @@ namespace PHPShopify;
 
 
 use PHPShopify\Exception\ApiException;
-use PHPShopify\Exception\CurlException;
+use PHPShopify\Exception\HttpException;
 use PHPShopify\Exception\SdkException;
 
 class GraphQL extends ShopifyResource
@@ -36,7 +36,7 @@ class GraphQL extends ShopifyResource
      *
      * @uses HttpRequestGraphQL::post() to send the HTTP request
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array
      */

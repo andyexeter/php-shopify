@@ -169,8 +169,8 @@ class CurlRequest
             usleep(500000);
         }
 
-        if (curl_errno($ch)) {
-            throw new Exception\CurlException(curl_errno($ch) . ' : ' . curl_error($ch));
+        if ($curlErrNo = curl_errno($ch)) {
+            throw new Exception\CurlException($curlErrNo . ' : ' . curl_error($ch), $curlErrNo);
         }
 
         // close curl resource to free up system resources

@@ -11,7 +11,7 @@ namespace PHPShopify;
 
 use PHPShopify\Exception\ApiException;
 use PHPShopify\Exception\SdkException;
-use PHPShopify\Exception\CurlException;
+use PHPShopify\Exception\HttpException;
 use Psr\Http\Message\ResponseInterface;
 
 /*
@@ -326,7 +326,7 @@ abstract class ShopifyResource
      * @uses HttpRequestJson::get() to send the HTTP request
      *
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array
      */
@@ -349,7 +349,7 @@ abstract class ShopifyResource
      *
      * @throws SdkException
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return integer
      */
@@ -371,7 +371,7 @@ abstract class ShopifyResource
      *
      * @throws SdkException if search is not enabled for the resouce
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array
      */
@@ -398,7 +398,7 @@ abstract class ShopifyResource
      * @uses HttpRequestJson::post() to send the HTTP request
      *
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array
      */
@@ -423,7 +423,7 @@ abstract class ShopifyResource
      * @uses HttpRequestJson::put() to send the HTTP request
      *
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array
      */
@@ -448,7 +448,7 @@ abstract class ShopifyResource
      * @uses HttpRequestJson::delete() to send the HTTP request
      *
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array an empty array will be returned if the request is successfully completed
      */
@@ -512,7 +512,7 @@ abstract class ShopifyResource
      * @param string $dataKey Keyname to fetch data from response array
      *
      * @throws ApiException if the response has an error specified
-     * @throws CurlException if response received with unexpected HTTP code.
+     * @throws HttpException if response received with unexpected HTTP code.
      *
      * @return array
      */
@@ -530,7 +530,7 @@ abstract class ShopifyResource
             $httpCode = CurlRequest::$lastHttpCode;
 
             if ($httpCode != null && $httpCode != $httpOK && $httpCode != $httpCreated && $httpCode != $httpDeleted) {
-                throw new Exception\CurlException("Request failed with HTTP Code $httpCode.");
+                throw new Exception\HttpException("Request failed with HTTP Code $httpCode.", $httpCode);
             }
         }
 
